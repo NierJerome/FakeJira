@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { isSpreadAssignment } from "typescript";
 
-export const isFalsy = (value) => (value == 0 ? true : !value);
+export const isFalsy = (value: any) => (value == 0 ? true : !value);
 
 // 工具函数应该是纯函数，且不应该改变原始值
-export const cleanObject = (object) => {
+export const cleanObject = (object: object) => {
   // object.assign({}, object)
   const result = { ...object };
   Object.keys(result).forEach((key) => {
+    // @ts-ignore
     const value = result[key];
     if (isFalsy(value)) {
+      // @ts-ignore
       delete result[key];
     }
   });
@@ -17,7 +19,7 @@ export const cleanObject = (object) => {
 };
 
 // Custom Hook hook只允许在组件中或其它hook中运行
-export const useMount = (callback) => {
+export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
@@ -28,20 +30,20 @@ export const useMount = (callback) => {
  * 多次请求只保留最后一次请求的效果
  * 可以使用不够直观
  */
-export const debounce = (func, delay) => {
-  let timeout;
-  return (...param) => {
-    // 闭包
-    if (timeout) {
-      clearTimeout(timeout);
-    }
-    timeout = setTimeout(() => {
-      func(...param);
-    }, delay);
-  };
-};
+// export const debounce = (func, delay) => {
+//   let timeout
+//   return (...param) => {
+//     // 闭包
+//     if (timeout) {
+//       clearTimeout(timeout)
+//     }
+//     timeout = setTimeout(() => {
+//       func(...param)
+//     }, delay)
+//   }
+// }
 
-export const useDebounce = (value, delay) => {
+export const useDebounce = (value: any, delay?: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
   useEffect(() => {
     const timeout = setTimeout(() => setDebounceValue(value), delay);
