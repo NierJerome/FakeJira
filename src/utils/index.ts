@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { isSpreadAssignment } from "typescript";
 
-export const isFalsy = (value: any) => (value == 0 ? true : !value);
+export const isFalsy = (value: unknown) => (value === 0 ? true : !value);
 
 // 工具函数应该是纯函数，且不应该改变原始值
 export const cleanObject = (object: object) => {
@@ -43,7 +43,8 @@ export const useMount = (callback: () => void) => {
 //   }
 // }
 
-export const useDebounce = (value: any, delay?: number) => {
+// 后面用泛型规范类型
+export const useDebounce = (value: unknown, delay?: number): any => {
   const [debounceValue, setDebounceValue] = useState(value);
   useEffect(() => {
     const timeout = setTimeout(() => setDebounceValue(value), delay);
