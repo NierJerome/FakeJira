@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { isSpreadAssignment } from "typescript";
+
 export const isFalsy = (value) => (value == 0 ? true : !value);
 
 // 工具函数应该是纯函数，且不应该改变原始值
@@ -11,4 +14,39 @@ export const cleanObject = (object) => {
     }
   });
   return result;
+};
+
+// Custom Hook hook只允许在组件中或其它hook中运行
+export const useMount = (callback) => {
+  useEffect(() => {
+    callback();
+  }, []);
+};
+
+// debounce 防抖
+/*
+ * 多次请求只保留最后一次请求的效果
+ * 可以使用不够直观
+ */
+export const debounce = (func, delay) => {
+  let timeout;
+  return (...param) => {
+    // 闭包
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      func(...param);
+    }, delay);
+  };
+};
+
+export const useDebounce = (value, delay) => {
+  const [debounceValue, setDebounceValue] = useState(value);
+  useEffect(() => {
+    const timeout = setTimeout(() => setDebounceValue(value), delay);
+    return () => clearTimeout(timeout);
+  }, [value, delay]);
+
+  return debounceValue;
 };
