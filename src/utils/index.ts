@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { isSpreadAssignment } from "typescript";
 
 export const isFalsy = (value: unknown) => (value === 0 ? true : !value);
 
-// 工具函数应该是纯函数，且不应该改变原始值
-export const cleanObject = (object: object) => {
+export const isVoid = (value: unknown) =>
+  value === undefined || value === null || value === "";
+
+// 工具函数应该是纯函数，且不应该改变原始值 键值对对象类型[key:string]:unknown
+export const cleanObject = (object: { [key: string]: unknown }) => {
   // object.assign({}, object)
   const result = { ...object };
   Object.keys(result).forEach((key) => {
-    // @ts-ignore
     const value = result[key];
-    if (isFalsy(value)) {
-      // @ts-ignore
+    if (isVoid(value)) {
       delete result[key];
     }
   });
@@ -22,6 +22,8 @@ export const cleanObject = (object: object) => {
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
+    // TODO 依赖项里加上callback会造成无限循环，这个和useCallback以及useMemo有关系
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
 
