@@ -23,7 +23,6 @@ export const LoginScreen = ({
       await run(login(values));
     } catch (e) {
       console.log(e);
-
       onError(e);
     }
   };
