@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 // children fallbackRender
 type FallbackRender = (props: { error: Error | null }) => React.ReactElement;
