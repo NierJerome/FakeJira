@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
-// import { jsx } from '@emotion/react'
 import React from "react";
-import { Form, Input, Select } from "antd";
+import { Form, Input } from "antd";
 import { Project } from "./list";
-import { IdSelect } from "components/id-select";
 import { UserSelect } from "components/user-select";
 export interface User {
   id: number;
@@ -20,8 +18,6 @@ interface SearchPanelProps {
   setParam: (param: SearchPanelProps["param"]) => void;
 }
 export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
-  console.log(users, "users");
-
   return (
     <Form css={{ marginBottom: "2rem" }} layout={"inline"}>
       <Form.Item>

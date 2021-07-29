@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, TableProps, Rate } from "antd";
+import { Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { User } from "screens/project-list/search-panel";

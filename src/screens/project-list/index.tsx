@@ -1,13 +1,11 @@
 import React from "react";
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
-import { useState } from "react";
 import { useDebounce, useDocumentTitle } from "utils";
 import styled from "@emotion/styled";
-import { Button, Typography } from "antd";
+import { Typography } from "antd";
 import { useProjects } from "utils/project";
 import { useUsers } from "utils/user";
-import { useUrlQueryParam } from "utils/url";
 import { useProjectsSearchParams } from "./util";
 
 export const ProjectListScreen = () => {
@@ -40,7 +38,7 @@ export const ProjectListScreen = () => {
   );
 };
 
-ProjectListScreen.whyDidYouRender = true;
+ProjectListScreen.whyDidYouRender = false;
 
 const Container = styled.div`
   padding: 3.2rem;
