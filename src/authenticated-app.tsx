@@ -33,6 +33,7 @@ export const AuthenticatedApp = () => {
             <Navigate to={window.location.pathname + "/projects"} />
           </Routes>
         </Router>
+        {/* <CreateProject/> */}
       </Main>
     </Container>
   );
