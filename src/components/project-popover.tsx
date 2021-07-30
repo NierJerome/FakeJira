@@ -4,9 +4,7 @@ import React from "react";
 import { useProjects } from "utils/project";
 import { ButtomNoPadding } from "./lib";
 
-export const ProjectPopover = (props: {
-  projectModalOpen: (isOpen: boolean) => void;
-}) => {
+export const ProjectPopover = (props: { projectButton: JSX.Element }) => {
   const { data: projects } = useProjects();
   const pinnedProjects = projects?.filter((project) => project.pin);
 
@@ -21,12 +19,7 @@ export const ProjectPopover = (props: {
         ))}
       </List>
       <Divider />
-      <ButtomNoPadding
-        onClick={() => props.projectModalOpen(true)}
-        type={"link"}
-      >
-        创建项目
-      </ButtomNoPadding>
+      {props.projectButton}
     </ContentContainer>
   );
   return (
