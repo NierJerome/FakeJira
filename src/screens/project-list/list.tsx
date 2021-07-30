@@ -1,10 +1,11 @@
 import React from "react";
-import { Table, TableProps } from "antd";
+import { Dropdown, Menu, Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import { User } from "screens/project-list/search-panel";
 import { Pin } from "components/pin";
 import { useEditProject } from "utils/project";
+import { ButtomNoPadding } from "components/lib";
 
 // TODO 把所有ID都改为number类型
 export interface Project {
@@ -19,6 +20,7 @@ export interface Project {
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
+  setProjectModalOpen: (isOpen: boolean) => void;
 }
 
 export const List = ({ users, ...props }: ListProps) => {
@@ -73,6 +75,28 @@ export const List = ({ users, ...props }: ListProps) => {
                   ? dayjs(project.created).format("YYYY-MM-DD")
                   : "无"}
               </span>
+            );
+          },
+        },
+        {
+          render(value, project) {
+            return (
+              <Dropdown
+                overlay={
+                  <Menu>
+                    <Menu.Item key={"edit"}>
+                      <ButtomNoPadding
+                        type={"link"}
+                        onClick={() => props.setProjectModalOpen(true)}
+                      >
+                        编辑
+                      </ButtomNoPadding>
+                    </Menu.Item>
+                  </Menu>
+                }
+              >
+                <ButtomNoPadding type={"link"}>...</ButtomNoPadding>
+              </Dropdown>
             );
           },
         },
