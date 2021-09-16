@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import { Divider, List, Popover, Typography } from "antd";
 import React from "react";
 import { useProjects } from "utils/project";
-import { ButtomNoPadding } from "./lib";
 
 export const ProjectPopover = (props: { projectButton: JSX.Element }) => {
   const { data: projects } = useProjects();
