@@ -6,6 +6,8 @@ import { User } from "screens/project-list/search-panel";
 import { Pin } from "components/pin";
 import { useEditProject } from "utils/project";
 import { ButtomNoPadding } from "components/lib";
+import { useDispatch } from "react-redux";
+import { projectListActions } from "./project-list.slice";
 
 // TODO 把所有ID都改为number类型
 export interface Project {
@@ -20,13 +22,13 @@ export interface Project {
 interface ListProps extends TableProps<Project> {
   users: User[];
   refresh?: () => void;
-  projectButton: JSX.Element;
 }
 
 export const List = ({ users, ...props }: ListProps) => {
   const { mutate } = useEditProject();
   const pinProjedct = (id: number) => (pin: boolean) =>
     mutate({ id, pin }).then(props.refresh);
+  const dispatch = useDispatch();
   return (
     <Table
       rowKey={"id"}
@@ -84,7 +86,16 @@ export const List = ({ users, ...props }: ListProps) => {
               <Dropdown
                 overlay={
                   <Menu>
-                    <Menu.Item key={"edit"}>{props.projectButton}</Menu.Item>
+                    <Menu.Item key={"edit"}>
+                      <ButtomNoPadding
+                        onClick={() =>
+                          dispatch(projectListActions.openProjectModal())
+                        }
+                        type={"link"}
+                      >
+                        编辑
+                      </ButtomNoPadding>
+                    </Menu.Item>
                   </Menu>
                 }
               >
