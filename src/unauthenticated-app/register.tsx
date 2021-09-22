@@ -30,6 +30,8 @@ export const RegisterScreen = ({
     try {
       await run(register(values));
     } catch (e) {
+      console.log(e);
+
       onError(e);
     }
   };

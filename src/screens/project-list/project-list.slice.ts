@@ -12,6 +12,7 @@ const initialState: State = {
 export const projectListSlice = createSlice({
   name: "projectListSlice",
   initialState,
+  // Redux toolkit 借助immer让以下reducers以返回一个新对象赋值的方式进行，而不是操作原对象（地址相同）
   reducers: {
     openProjectModal(state) {
       state.projectModalOpen = true;
