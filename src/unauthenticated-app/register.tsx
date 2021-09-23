@@ -9,9 +9,6 @@ export const RegisterScreen = ({
 }: {
   onError: (error: Error) => void;
 }) => {
-  // const login = (param: { username: string; password: string }) => {
-
-  // };
   const { register } = useAuth();
   const { run, isLoading } = useAsync(undefined, { throwOnError: true });
 
