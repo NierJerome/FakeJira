@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ButtomNoPadding, Row } from "components/lib";
+import { Row } from "components/lib";
 import { useAuth } from "context/auth-context";
 import { ProjectListScreen } from "screens/project-list";
 import { ReactComponent as SoftwareLogo } from "assets/software-logo.svg";
@@ -8,7 +8,6 @@ import { Navigate, Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ProjectScreen } from "screens/project";
 import { resetRoute } from "utils";
-import { useState } from "react";
 import { ProjectModal } from "screens/project-list/project-model";
 import { ProjectPopover } from "components/project-popover";
 
